@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Register() {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -20,8 +20,8 @@ function Register() {
       alert("Registration Successful");
       navigate('/login');
     } catch (error) {
-      if(error && error.response.status === 40)
-      console.error('Error during registration:', error.response?.data || error.message);
+      if (error && error.response.status === 40)
+        console.error('Error during registration:', error.response?.data || error.message);
     }
   };
 
@@ -32,7 +32,7 @@ function Register() {
         <form className="form" onSubmit={handleSubmit}>
           <input
             type="text"
-            name="name"
+            name="username"
             className="input"
             placeholder="Name"
             value={formData.name}
