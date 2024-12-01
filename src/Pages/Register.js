@@ -18,7 +18,7 @@ function Register() {
 
       console.log('Registration successful:', response.data);
       alert("Registration Successful");
-      navigate('/login');
+      navigate('/plans');
     } catch (error) {
       if (error && error.response.status === 40)
         console.error('Error during registration:', error.response?.data || error.message);

@@ -15,52 +15,6 @@
     position: relative;
 }
 
-.nav {
-    position: relative;
-    display: flex;
-    width: 100%;
-    padding: 5rem 10rem;
-    padding-bottom: 0;
-    justify-content: space-between;
-    font-size: 1.5rem;
-}
-
-.nav .logo {
-    display: flex;
-    gap: 10px;
-}
-
-.nav .logo img {
-    width: 30px;
-    height: 30px;
-}
-
-.nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 2rem;
-    display: flex;
-}
-
-.nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.nav li a.active {
-    color: red;
-}
-
-.nav a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.nav li a:hover {
-    text-decoration: underline;
-}
-
 .home-text {
     width: 100%;
     height: calc(100vh - 117px);

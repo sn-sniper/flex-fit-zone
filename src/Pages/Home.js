@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import logo from "../Assets/1.png";
+import { useNavigate } from 'react-router-dom';
 import "../Styles/Style.css";
+import Navbar from '../Components/Navbar';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <div className='body'>
-        <nav className='nav'>
+        {/* <nav className='nav'>
           <span className='logo'>
             <img src={logo} alt="logo" />FLEXFITZONE</span>
           <ul>
@@ -20,7 +20,8 @@ export default function Home() {
             <li><Link to="/offers">OFFERS</Link></li>
             <li><Link to="/contact">CONTACT</Link></li>
           </ul>
-        </nav>
+        </nav> */}
+        <Navbar/>
         <div className='home-text'>
           <h1>BE YOUR <b>BEST</b></h1>
           <button onClick={handleJoin}>
