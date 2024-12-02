@@ -7,6 +7,8 @@ import Offers from './Pages/Offers';
 import './Styles/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Plans from './Pages/Plans';
+import UserDashboard from './Pages/UserDashboard';
+import Admin from './Pages/Admin';
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/plans' element={<Plans />} />
+        <Route path='/dashboard' element={<UserDashboard />}/>
+        <Route path='/admin-123-456-789' element={<Admin/>} />
       </Routes>
     </BrowserRouter>
   );
