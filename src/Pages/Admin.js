@@ -35,11 +35,11 @@ const Admin = () => {
                         {users.length > 0 ? (
                             users.map((user,index)=>(
                                 <li className='table-row' key={index}>
-                                    <div className='col col-1'>#{user.id}</div>
-                                    <div className='col col-2'>{user.username}</div>
-                                    <div className='col col-3'>{user.email}</div>
-                                    <div className='col col-4'>{user.planType}</div>
-                                    <div className='col col-5'>{user.admin === 1 ? "Yes" : "No"}</div>
+                                    <div className='col col-1' data-label="ID">#{user.id}</div>
+                                    <div className='col col-2' data-label="Username">{user.username}</div>
+                                    <div className='col col-3' data-label="Email">{user.email}</div>
+                                    <div className='col col-4' data-label="Plan Type">{user.planType == "premium" ? <ion-icon name="diamond"></ion-icon> : <ion-icon name="leaf"></ion-icon>}{user.planType}</div>
+                                    <div className='col col-5' data-label="Admin">{user.admin === 1 ? "Yes" : "No"}</div>
                                 </li>
                             ))
                         ):(
