@@ -1,7 +1,18 @@
-import React from 'react'
-import "../Styles/Plans.css"
-import Navbar from '../Components/Navbar'
+import React, { useContext } from 'react';
+import "../Styles/Plans.css";
+import Navbar from '../Components/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { RegistrationContext } from '../Context/RegistrationContext'; 
+
 export default function Plans() {
+    const { updateData } = useContext(RegistrationContext); 
+    const navigate = useNavigate();
+
+    const handleSubscription = (planType) => {
+        updateData('planType', planType); 
+        navigate('/payment-method' , {replace : true});
+    };
+
     return (
         <React.Fragment>
             <div className='Plans-Container'>
@@ -85,14 +96,20 @@ export default function Plans() {
                             </tr>
                             <tr>
                                 <td></td>
-                                <td className='button-td'><button>Free</button></td>
-                                <td className='button-td'><button>3.99$/Month</button></td>
-                                <td className='button-td'><button>12.99$/Month</button></td>
+                                <td className='button-td'>
+                                    <button onClick={() => handleSubscription('Free')}>Free</button>
+                                </td>
+                                <td className='button-td'>
+                                    <button onClick={() => handleSubscription('Pro')}>3.99$/Month</button>
+                                </td>
+                                <td className='button-td'>
+                                    <button onClick={() => handleSubscription('Premium')}>12.99$/Month</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </React.Fragment>
-    )
+    );
 }

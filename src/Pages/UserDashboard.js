@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../Styles/UserDashboard.css";
+import { useNavigate } from "react-router-dom";
 import UserSidebar from "../Components/UserSidebar";
+import { RegistrationContext } from '../Context/RegistrationContext';
 
 const workouts = [
     {
@@ -20,10 +22,25 @@ const workouts = [
 ];
 
 const UserDashboard = () => {
+    const navigate = useNavigate();
+    const { registrationData, logout } = useContext(RegistrationContext);
+    const [userData, setUserData] = useState(registrationData);
+    useEffect(() => {
+        const storedData = sessionStorage.getItem("ClientData");
+        if (storedData) {
+            setUserData(JSON.parse(storedData));
+        }
+    }, [])
+
+    console.log(registrationData);
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    }
     return (
         <React.Fragment>
             <div className="UserDashboard-Container">
-                <UserSidebar />
+                <UserSidebar plantype={userData.planType || 'free'} username={userData.username || 'Guest'} />
                 <div className="Dashboard-Content">
                     <div className="Dashboard-Workouts">
                         {workouts.map((workout, index) => (
@@ -47,6 +64,10 @@ const UserDashboard = () => {
                             </div>
                         ))}
                     </div>
+                    <button className="logout-btn" onClick={handleLogout}>
+                        <ion-icon name="exit-outline"></ion-icon>
+                        Logout
+                    </button>
                 </div>
             </div>
         </React.Fragment>

@@ -63,5 +63,12 @@
 }
 
 .sidebar-profile ion-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
+}
+
+.sidebar-profile span{
+    display: flex;
+    width: 
+    100%;
+    justify-content: space-between;
 }

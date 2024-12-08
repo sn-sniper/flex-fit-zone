@@ -93,3 +93,22 @@
     cursor: pointer;
     color: rgba(17, 24, 39, 1);
 }
+.logout-btn{
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    background-color: #f00;
+    color: #fff;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.logout-btn ion-icon{
+    font-size: 1.2rem;
+}

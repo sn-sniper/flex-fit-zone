@@ -1,38 +1,56 @@
-import React from "react";
-
-const users = [
-    { name: "John Doe", email: "john.doe@example.com", membership: "Premium", progress: "80%" },
-    { name: "Jane Smith", email: "jane.smith@example.com", membership: "Pro", progress: "65%" },
-    { name: "Bob Johnson", email: "bob.johnson@example.com", membership: "Free", progress: "30%" }
-];
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import "../Styles/Admin.css";
 
 const Admin = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get('http://localhost:3030/api/auth/admin');
+                setUsers(response.data.users);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
     return (
-        <div style={{ padding: "20px" }}>
-            <h1 style={{ color: "white" }}>Admin Dashboard</h1>
-            <div style={{ marginTop: "20px", overflowX: "auto" }}>
-                <table style={{ width: "100%", borderCollapse: "collapse", backgroundColor: "#212121", color: "white" }}>
-                    <thead style={{ backgroundColor: "#414141" }}>
-                        <tr>
-                            <th style={{ border: "1px solid white", padding: "10px" }}>Name</th>
-                            <th style={{ border: "1px solid white", padding: "10px" }}>Email</th>
-                            <th style={{ border: "1px solid white", padding: "10px" }}>Membership</th>
-                            <th style={{ border: "1px solid white", padding: "10px" }}>Progress</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={index}>
-                                <td style={{ border: "1px solid white", padding: "10px" }}>{user.name}</td>
-                                <td style={{ border: "1px solid white", padding: "10px" }}>{user.email}</td>
-                                <td style={{ border: "1px solid white", padding: "10px" }}>{user.membership}</td>
-                                <td style={{ border: "1px solid white", padding: "10px" }}>{user.progress}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+        <React.Fragment>
+            <div className='admin-container'>   
+                <h1>Admin Dashboard</h1>
+                <hr />
+                <div className='container'>
+                    <ul className='responsive-table'>
+                        <li className='table-header'>
+                            <div className='col col-1'>ID</div>
+                            <div className='col col-2'>Username</div>
+                            <div className='col col-3'>Email</div>
+                            <div className='col col-4'>Membership</div>
+                            <div className='col col-5'>Admin</div>
+                        </li>
+                        {users.length > 0 ? (
+                            users.map((user,index)=>(
+                                <li className='table-row' key={index}>
+                                    <div className='col col-1'>#{user.id}</div>
+                                    <div className='col col-2'>{user.username}</div>
+                                    <div className='col col-3'>{user.email}</div>
+                                    <div className='col col-4'>{user.planType}</div>
+                                    <div className='col col-5'>{user.admin === 1 ? "Yes" : "No"}</div>
+                                </li>
+                            ))
+                        ):(
+                            <li className='table-raw'>
+                                <div className='col col-1'>No users found</div>
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>
-        </div>
+        </React.Fragment>
     );
 };
 

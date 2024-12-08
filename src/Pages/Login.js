@@ -15,10 +15,14 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3030/api/auth/login', formData);
-
       console.log('Login successful:', response.data);
       alert("Login Successful");
-      navigate('/dashboard');
+      if(response.data.admin === 1){
+        navigate('/admin-123-456-789', {replace : true});
+      }else{
+          sessionStorage.setItem('ClientData', JSON.stringify(response.data));
+        navigate('/dashboard', {replace : true});
+      }
     } catch (error) {
       console.error('Error during login:', error.response?.data || error.message);
     }
