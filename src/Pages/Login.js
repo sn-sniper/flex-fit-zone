@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
+  const [show, setShow] = useState(false);
+
   const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
 
@@ -11,17 +13,22 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const showPassword = (e) => {
+    e.preventDefault();
+    setShow(!show);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3030/api/auth/login', formData);
       console.log('Login successful:', response.data);
       alert("Login Successful");
-      if(response.data.admin === 1){
-        navigate('/admin-123-456-789', {replace : true});
-      }else{
-          sessionStorage.setItem('ClientData', JSON.stringify(response.data));
-        navigate('/dashboard', {replace : true});
+      if (response.data.admin === 1) {
+        navigate('/admin-123-456-789', { replace: true });
+      } else {
+        sessionStorage.setItem('ClientData', JSON.stringify(response.data));
+        navigate('/dashboard', { replace: true });
       }
     } catch (error) {
       console.error('Error during login:', error.response?.data || error.message);
@@ -41,14 +48,19 @@ function Login() {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <input
-            type="password"
-            name="password"
-            className="input"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
+          <div className='pass-input'>
+            <input
+              type={show ? "text" : "password"}
+              name="password"
+              className="p-input"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+            <button onClick={showPassword}>
+              {show ? <ion-icon name="eye-outline"></ion-icon> : <ion-icon name="eye-off-outline"></ion-icon>}
+            </button>
+          </div>
           <button className="form-btn">Log In</button>
         </form>
         <p className="sign-up-label">

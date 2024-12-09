@@ -1,16 +1,24 @@
 import React, { useState, useContext } from 'react';
 import "../Styles/Login.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { RegistrationContext } from '../Context/RegistrationContext'; 
+import { RegistrationContext } from '../Context/RegistrationContext';
 
 function Register() {
-  const { updateData } = useContext(RegistrationContext); 
+  const { updateData } = useContext(RegistrationContext);
+
+  const [show, setShow] = useState(false);
+
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const showPassword = (e) => {
+    e.preventDefault();
+    setShow(!show);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,16 +53,18 @@ function Register() {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <div>
-          <input
-            type="password"
-            name="password"
-            className="input"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-          <ion-icon name="eye-off-outline"></ion-icon>
+          <div className='pass-input'>
+            <input
+              type={show ? "text" : "password"}
+              name="password"
+              className="p-input"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+            <button onClick={showPassword}>
+              {show ? <ion-icon name="eye-outline"></ion-icon> : <ion-icon name="eye-off-outline"></ion-icon>}
+            </button>
           </div>
           <button className="form-btn">Register</button>
         </form>

@@ -1,4 +1,4 @@
-.Login-Container{
+.Login-Container {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -50,6 +50,42 @@
     outline: 0 !important;
     box-sizing: border-box;
     padding: 12px 15px;
+}
+
+.pass-input {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 12px 15px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.pass-input .p-input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 90%;
+    color: #4a5568;
+}
+
+.pass-input button {
+    cursor: pointer;
+    width: 10%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #000;
+    transition: .2s ease-in-out;
+    font-size: 1.2rem;
+}
+
+.pass-input button:hover{
+    color: #f00;
+
 }
 
 .form-btn {
