@@ -45,6 +45,7 @@ function Register() {
             value={formData.email}
             onChange={handleInputChange}
           />
+          <div>
           <input
             type="password"
             name="password"
@@ -53,6 +54,8 @@ function Register() {
             value={formData.password}
             onChange={handleInputChange}
           />
+          <ion-icon name="eye-off-outline"></ion-icon>
+          </div>
           <button className="form-btn">Register</button>
         </form>
         <p className="sign-up-label">
