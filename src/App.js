@@ -11,6 +11,7 @@ import UserDashboard from './Pages/UserDashboard';
 import Admin from './Pages/Admin';
 import PaymentMethod from './Pages/PaymentMethod';
 import { RegistrationProvider } from './Context/RegistrationContext';
+import Explore from './Components/Explore';
 function App() {
   return (
     <BrowserRouter>
@@ -24,7 +25,9 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/plans' element={<Plans />} />
           <Route path='/payment-method' element={<PaymentMethod />} />
-          <Route path='/dashboard' element={<UserDashboard />} />
+          <Route path='/dashboard' element={<UserDashboard />}> 
+            <Route path='explore' element={<Explore/>}/>
+          </Route>
           <Route path='/admin-123-456-789' element={<Admin />} />
         </Routes>
       </RegistrationProvider>

@@ -112,3 +112,8 @@
 .logout-btn ion-icon{
     font-size: 1.2rem;
 }
+
+.no-workouts-message{
+    color: #fff;
+    font-size: 3rem;
+}
